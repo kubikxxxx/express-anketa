@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Výsledky ankety</title>
+    <link rel="stylesheet" href="../public/css/style.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <table>
+            <tr>
+                <th>Datum</th>
+                <th>jak rád programuje</th>
+                <th>Programovací jazyk</th>
+                <th>Jak dlouho programuje</th>
+                <th>Co programuje</th>
+                <th>Co používá při programování</th>
+            </tr>
+            <% responses.forEach(function(response) { 
+                const date = new Date(response.timestamp);
+                const dateString = `${('0' + date.getDate()).slice(-2)}.${('0' + (date.getMonth() + 1)).slice(-2)}.${date.getFullYear()}`;
+                const timeString = `${('0' + date.getHours()).slice(-2)}:${('0' + date.getMinutes()).slice(-2)}:${('0' + date.getSeconds()).slice(-2)}`;
+            %>
+                <tr>
+                    <td><%= dateString %></td>
+                    <td><%= response.answers.like %></td>
+                    <td><%= response.answers.proLanguage %></td>
+                    <td><%= response.answers.time %></td>
+                    <td><%= response.answers.druh %></td>
+                    <td><%= response.answers.aplikace %></td>
+                </tr>
+            <% }); %>
+        </table>
+    </div>
+</body>
+</html>
+

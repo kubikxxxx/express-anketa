@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webová anketa</title>
+    <link rel="stylesheet" href="../public/css/style.css">
+    <style>
+    </style>
+</head>
+<body>
+    <h2>Anketa o autech</h2>
+    <form action="/submit" method="post" class="form-container" id="anketaForm"> 
+        <div>
+            <label for="like" class="bold">Jak moc rád programuješ?</label>
+            <input type="number" step="1" min="0" max="5" id="like" name="like" required> 
+        </div>
+                <div>
+            <label class="bold">Zvolte, jaký programovací jazyk preferuješ nebo používáš nejčastěji:</label>
+            <select id="proLanguage" name="proLanguage" required> 
+                <option value="">Vyberte...</option>
+                <option value="Javascript">Javascript</option>
+                <option value="C#">C#</option>
+                <option value="Java">Java</option>
+                <option value="Php">Php</option>
+            </select>
+        </div>
+        
+        
+        <div>
+            <label for="using" class="bold">Jak dlouho programuješ?</label>
+            <select id="time" name="time" required>
+                <option value="">Vyberte...</option> 
+                <option value="Neprogramuji">Neprogramuji.</option>
+                <option value="1 rok.">1 rok.</option>
+                <option value="2 roky.">2 roky.</option>
+                <option value="3 roky a déle.">3 roky a déle.</option>
+            </select>
+        </div>
+        
+       
+        <div>
+            <label for="roleModel" class="bold">Jaký druh projektů nebo aplikací vytváříš nebo jsi vytvářel?</label>
+            <select id="druh" name="druh" required> 
+                <option value="">Vyberte...</option> 
+                <option value="Neprogramuji">Neprogramuji</option>
+                <option value="webové stránky">webové stránky</option>
+                <option value="mobilní aplikace">mobilní aplikace</option>
+                <option value="desktopové aplikace">desktopové aplikace</option>
+                <option value="něco jiného">něco jiného</option>
+            </select>
+        </div>
+        
+        
+        <div>
+            <label for="roleModel" class="bold">Které nástroje a technologie používáš při vývoji software?</label>
+            <input type="text" id="aplikace" name="aplikace" required> 
+        </div>
+        
+        <button type="submit" class="submit-btn">Odeslat odpovědi</button>
+    </form>
+
+    <script>
+        // JavaScript pro validaci formuláře
+        document.getElementById('anketaForm').addEventListener('submit', function(event) { // Při odeslání formuláře
+            const inputs = document.querySelectorAll('input, select'); // Vybrat všechna vstupní pole a rozbalovací seznamy
+            let isValid = true; // Předpokládejte, že formulář je platný
+
+            inputs.forEach(function(input) { // Pro každý prvek
+                if (!input.value) { // Pokud hodnota není vyplněna
+                    isValid = false; // Nastavit, že formulář není platný
+                    input.classList.add('invalid'); // Přidat třídu pro zvýraznění neplatného pole
+                } else { // Jinak
+                    input.classList.remove('invalid'); // Odstranit třídu pro zvýraznění neplatného pole
+                }
+            });
+
+            if (!isValid) { // Pokud formulář není platný
+                event.preventDefault(); // Zabránit odeslání formuláře
+                alert('Prosím vyplňte všechny povinné položky.'); // Upozornit uživatele, aby vyplnil všechny povinné položky
+            }
+        });
+    </script>
+</body>
+</html>
